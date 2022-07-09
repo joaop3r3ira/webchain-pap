@@ -1,0 +1,41 @@
+{
+  "name": "carteira",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@3rdweb/hooks": "^1.8.0",
+    "@3rdweb/react": "^1.8.1",
+    "@3rdweb/sdk": "^1.35.0",
+    "@sanity/client": "^2.23.2",
+    "@sanity/image-url": "^1.0.1",
+    "@svgr/webpack": "^6.2.0",
+    "@thirdweb-dev/sdk": "^2.3.24",
+    "babel-plugin-styled-components": "^2.0.2",
+    "chart.js": "^3.7.0",
+    "core-js": "^3.23.3",
+    "crypto-icons": "^1.0.65",
+    "cryptocurrency-icons": "^0.18.0",
+    "ethers": "^5.6.9",
+    "magic-sdk": "^7.0.0",
+    "next": "^12.2.0",
+    "react": "17.0.2",
+    "react-chartjs-2": "^4.0.0",
+    "react-crypto-icons": "^1.0.5",
+    "react-dom": "17.0.2",
+    "react-icons": "^4.3.1",
+    "react-loader-spinner": "^5.1.5",
+    "react-modal": "^3.15.1",
+    "react-router-dom": "^6.3.0",
+    "styled-components": "^5.3.3"
+  },
+  "devDependencies": {
+    "eslint": "8.6.0",
+    "eslint-config-next": "12.0.8"
+  }
+}
