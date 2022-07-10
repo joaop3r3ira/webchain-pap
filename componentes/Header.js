@@ -33,14 +33,22 @@ const Header = ({ walletAddress, sanityTokens, thirdWebTokens,  connectWallet })
 
   return (
     <Wrapper>
-      <Titulo><Image src={webchainlogo} alt="" style={{width: "30px", height: "30px"}} /></Titulo>
+      <LogoContainer>
+      <Logo><Image src={webchainlogo} alt="" /></Logo>
+      </LogoContainer>
         <ButtonsContainer> 
+          {walletAddress ? (
           <WalletLink>
             <WalletLinkTitle>Wallet Conectada</WalletLinkTitle>
           <WalletAddress>
              {walletAddress.slice(0,7)}... {walletAddress.slice(35)}
           </WalletAddress>
           </WalletLink>
+          ) : (
+            <Button onClick={() => connectWallet('injected')}>
+              Conectar Wallet
+              </Button>
+          )}
           <Link href={'/?transferir=1'}>  
           <Button> Enviar / Receber </Button>
           </Link>
@@ -62,18 +70,43 @@ const Header = ({ walletAddress, sanityTokens, thirdWebTokens,  connectWallet })
 export default Header
 
 const Wrapper = styled.div`
-  width: calc(100% - 3rem);
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid #282b2f;
-  display: flex;
-  align-items: center;
+width: calc(100%);
+padding: 1rem 1.5rem;
+border-bottom: 1px solid #282b2f;
+display: flex;
+align-items: center;
 `
 
-const Titulo = styled.div`
-margin-left: 3rem;
-display: space-between;
-width: 70%;
+const LogoContainer = styled.div`
+  display: end;
 `
+
+const Logo = styled.div`
+  height: 40px;
+  width: 200px;
+  object-fit: contain;
+  margin-left: 4rem;
+  margin-right: 125vh;
+  align-content: center;
+  
+
+  @media (max-width: 1000px) {
+  height: 100px;
+  width: 100px;
+  object-fit: contain;
+  margin-right: 7vh;
+  }
+
+  @media (max-width: 500px) {
+  height: 0px;
+  width: 0px;
+  margin-left: -20px;
+  object-fit: contain;
+  margin-right: 2vh;
+  }
+
+`
+
 
 const ButtonsContainer = styled.div`
   display: flex;
@@ -101,7 +134,7 @@ const WalletLink = styled.div`
   padding: 0 1rem;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: flex-end;
   justify-content: center;
 `
 

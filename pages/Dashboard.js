@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import Principal from '../componentes/Principal'
 import { ThirdwebSDK } from '@3rdweb/sdk'
 import { ethers } from 'ethers'
+import Sidebar from '../componentes/Sidebar'
 
 const sdk = new ThirdwebSDK(
   new ethers.Wallet(
