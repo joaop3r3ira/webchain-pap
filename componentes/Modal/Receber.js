@@ -5,7 +5,7 @@ import { client } from '../../lib/sanity'
 import { BiCopy } from 'react-icons/bi'
 import { FaCheck } from 'react-icons/fa'
  
-const Receber = ({ setAction, selectedToken, walletAddress }) => {
+const Receber = ({ selectedToken, walletAddress }) => {
     const [imageUrl, setImageUrl] = useState(null)
     const [copied, setCopied] = useState(false)
 

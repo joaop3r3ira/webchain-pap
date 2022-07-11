@@ -10,7 +10,6 @@ const ItemMoeda = ({
     setAction,
     selectedToken,
     setSelectedToken,
-    sanityTokens,
     thirdWebTokens,
 })   => {
     const [balance, setBalance] = useState('A carregar...')

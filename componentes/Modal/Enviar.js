@@ -5,24 +5,30 @@ import imageUrlBuilder from '@sanity/image-url'
 import { client } from '../../lib/sanity'
 
 const Enviar = ({ selectedToken, setAction, thirdWebTokens, walletAddress }) => {
+    // state para ler o montante do input
     const [amount, setAmount] = useState('')
+    // state para o value da Address
     const [recipient, setRecipient] = useState('')
     const [imageUrl, setImageUrl] = useState(null)
     const [activeThirdWebToken, setActiveThirdWebToken] = useState()
     const [balance, setBalance] = useState("Carregando...")
 
+ // funcao para verificar qual é o token selecionado
    useEffect(() => {
+    console.log(selectedToken, "token selecionado")
     const activeToken = thirdWebTokens.find(
         token => token.address === selectedToken.contractAddress
         )
         setActiveThirdWebToken(activeToken)
     }, [thirdWebTokens, selectedToken])
 
+    // este UseEffect vai retornar a imagem do token selecionado atraves da sanity 
    useEffect(() => {
     const url = imageUrlBuilder(client).image(selectedToken.logo).url()
     setImageUrl(url)
 },[selectedToken])
 
+// funcao para retornar o saldo da ThirdWebtoken selecionada
     useEffect(() => {
         const getBalance = async () => {
             const balance = await activeThirdWebToken.balanceOf(walletAddress)
@@ -33,6 +39,8 @@ const Enviar = ({ selectedToken, setAction, thirdWebTokens, walletAddress }) => 
             getBalance()
         }
     }, [activeThirdWebToken])
+
+    // funcao para enviar o montante, onde vai verificar o token selecionado e ler o valor do input do montante e do recipient, a fim de enviar o token
 
 
     const sendCrypto = async (amount, recipient) => {

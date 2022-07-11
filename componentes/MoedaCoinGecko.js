@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import axios from 'axios';
 import Coingecko from './Coingecko'
 import styled from 'styled-components';
 
@@ -12,7 +11,7 @@ const MoedaCoinGecko = () => {
     const interval = setInterval(() => {
     fetchCryptoData();
     console.log('A atualizar...');
-    }, 100)
+    }, 1000)
     return () => clearInterval(interval);
   }, [cryptoData]);
 

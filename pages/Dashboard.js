@@ -1,10 +1,10 @@
 import React, {useState, useEffect, Component} from 'react'
 import Header from '../componentes/header'
 import styled from 'styled-components'
-import Principal from '../componentes/Principal'
+import Portfolio from '../componentes/Portfolio'
 import { ThirdwebSDK } from '@3rdweb/sdk'
 import { ethers } from 'ethers'
-import Sidebar from '../componentes/Sidebar'
+
 
 const sdk = new ThirdwebSDK(
   new ethers.Wallet(
@@ -16,7 +16,7 @@ const sdk = new ThirdwebSDK(
 )
 
 
-const Dashboard = ({address}) => {
+  const Dashboard = ({address}) => {
   const [sanityTokens, setSanityTokens] = useState([])
   const [ thirdWebTokens, setThirdWebTokens ] = useState([])
   
@@ -28,6 +28,7 @@ const Dashboard = ({address}) => {
       const sanityTokens = (await moedas.json()).result
       setSanityTokens(sanityTokens)
       
+      
       setThirdWebTokens(
         sanityTokens.map(token => sdk.getTokenModule(token.contractAddress))
       )
@@ -35,6 +36,9 @@ const Dashboard = ({address}) => {
   
     return getSanityAndThirdWebTokens();
   }, []); 
+
+  console.log(thirdWebTokens, "ThirdWebTokens --> ")
+  console.log(sanityTokens, "SanityTokens --> ")
 
   return (
     <Wrapper>
@@ -44,7 +48,7 @@ const Dashboard = ({address}) => {
     sanityTokens={sanityTokens} 
     thirdWebTokens={thirdWebTokens} 
     />
-    <Principal
+    <Portfolio
     walletAddress={address} 
     sanityTokens={sanityTokens} 
     thirdWebTokens={thirdWebTokens} 

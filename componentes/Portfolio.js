@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { BsThreeDotsVertical } from 'react-icons/bs'
 import Moeda from './Moeda'
 import MoedaCoinGecko from './MoedaCoinGecko'
-import Header from './Header'
 
 
-const Portfolio = ({ thirdWebTokens, sanityTokens, walletAddress, token, thirdWebToken, selectedToken, setSelectedToken, setAction, index, Key }) => {
+const Portfolio = ({ thirdWebTokens, sanityTokens, walletAddress }) => {
   const [walletBalance, setWalletBalance] = useState(0)
   const tokenEUR = {}
 
+
+  // loop que vai retornar todos os tokens da thirdWeb e igualar aos tokens da sanity
   for (const token of sanityTokens) {
     tokenEUR[token.contractAddress] = Number(token.precoEUR)
   }
 
+  //  useEffect que contem uma promise que vai multiplicar o saldo de cada token pelo preco dos tokens da sanity para conseguir o saldo de cada token convertido para EUR //*
   useEffect(() => {
     const calculateTotalBalance = async () => {
       const TotalBalance = await Promise.all(
@@ -22,6 +23,8 @@ const Portfolio = ({ thirdWebTokens, sanityTokens, walletAddress, token, thirdWe
           return Number(balance.displayValue) * tokenEUR[token.address]
         })
       )
+
+      // reduce que soma o saldo convertido em euro de cada token
       setWalletBalance(TotalBalance.reduce((acc, curr) => acc + curr, 0))
     }
 
@@ -60,13 +63,8 @@ const Portfolio = ({ thirdWebTokens, sanityTokens, walletAddress, token, thirdWe
                   <Moeda 
                   key={index}
                   token={token}
-                  walletAddress={walletAddress}
-                  selectedToken={selectedToken}
-                  setSelectedToken={setSelectedToken}
                   thirdWebTokens={thirdWebTokens}
-                  thirdWebToken={thirdWebToken}
                   sanityTokens={sanityTokens}
-                  setAction={setAction}  
                     />
                     ))}
                   <Divisor />
